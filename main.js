@@ -3,8 +3,8 @@ listLength = 500;
 listLimit = 1000;
 bars = [];
 numbers = [];
-
-interateLimit = 6;
+bigger = [];
+smaller = [];
 
 //Setup function (run one time at beginning)
 function setup(){
@@ -48,17 +48,14 @@ function windowResized() {
   yunit = windowHeight / listLimit;
 }
 
-iteration = 0;
+
 function csort(array){
-if (iteration < interateLimit){
 
 
   p = round((array.length-1) /2);
   pvalue = array[p];
   //pvalue = listLimit / 2;
 
-  bigger = [];
-  smaller = [];
 
     for (i = 0; i < array.length; i++){
     current = array[i];
@@ -72,8 +69,7 @@ if (iteration < interateLimit){
   //  smaller = csort(smaller);
   //  bigger = csort(bigger);
   //}
+
   array = smaller.concat(bigger);
   return array;
-  }
-  iteration++;
 }
