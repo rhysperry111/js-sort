@@ -4,6 +4,8 @@ listLimit = 1000;
 bars = [];
 numbers = [];
 
+interateLimit = 6;
+
 //Setup function (run one time at beginning)
 function setup(){
   //Make the canvas fill the whole screen
@@ -18,7 +20,7 @@ function setup(){
   xunit = windowWidth / listLength;
   yunit = windowHeight / listLimit;
 
-  csort(numbers);
+  numbers = csort(numbers);
 }
 
 //Function continually run
@@ -46,24 +48,32 @@ function windowResized() {
   yunit = windowHeight / listLimit;
 }
 
+iteration = 0;
 function csort(array){
+if (iteration < interateLimit){
+
 
   p = round((array.length-1) /2);
   pvalue = array[p];
+  //pvalue = listLimit / 2;
 
   bigger = [];
   smaller = [];
 
-  for (i = 0; i < array.length; i++){
-    current = array[1];
-    if (current <= pvalue){
-      smaller.push(current);
-    } else {
-      bigger.push(current);
+    for (i = 0; i < array.length; i++){
+    current = array[i];
+      if (current <= pvalue){
+        smaller.push(current);
+      } else {
+        bigger.push(current);
+      }
     }
-  }
-  csort(smaller);
-  csort(bigger);
-
+  //if (array.length > 1){
+  //  smaller = csort(smaller);
+  //  bigger = csort(bigger);
+  //}
   array = smaller.concat(bigger);
+  return array;
+  }
+  iteration++;
 }
