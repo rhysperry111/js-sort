@@ -18,7 +18,7 @@ function setup(){
   xunit = windowWidth / listLength;
   yunit = windowHeight / listLimit;
 
-  sort(numbers);
+  csort(numbers);
 }
 
 //Function continually run
@@ -46,7 +46,7 @@ function windowResized() {
   yunit = windowHeight / listLimit;
 }
 
-function sort(array){
+function csort(array){
 
   p = round((array.length-1) /2);
   pvalue = array[p];
@@ -62,8 +62,8 @@ function sort(array){
       bigger.push(current);
     }
   }
-  sort(smaller);
-  sort(bigger);
+  csort(smaller);
+  csort(bigger);
 
   array = smaller.concat(bigger);
 }
