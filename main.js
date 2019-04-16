@@ -1,10 +1,12 @@
+//REMEMBER use *let* and *var* to declare variables
 //Global vars:
-listLength = 500;
-listLimit = 1000;
-bars = [];
-numbers = [];
-bigger = [];
-smaller = [];
+var listLength = 500;
+var listLimit = 1000;
+var bars = [];
+var numbers = [];
+var iteration = 0;
+var xunit;
+var yunit;
 
 //Setup function (run one time at beginning)
 function setup(){
@@ -12,7 +14,7 @@ function setup(){
   createCanvas(windowWidth, windowHeight);
 
   //Fill the [ numbers[] ] array random numbers from 0 to [ listLimit ] of length [ listLength ]
-  for(i = 0; i < listLength; i++){
+  for(let i = 0; i < listLength; i++){
     numbers[i] = Math.round(Math.random() * listLimit);
   }
 
@@ -33,8 +35,8 @@ function draw(){
   noStroke();
 
   //Create the bars array at the length of [ listLength ] and with the heights of from the [ numbers[] ] array
-  for(i = 0; i < listLength; i++){
-    height = numbers[i];
+  for(let i = 0; i < listLength; i++){
+    let height = numbers[i];
     bars[i] = rect((0 + xunit * i), listLimit*yunit, xunit, yunit*-height);
   }
    //throw new Error("Script finished! - I threw an error to stop this from eating up your CPU.")
@@ -50,26 +52,27 @@ function windowResized() {
 
 
 function csort(array){
+  let p = round((array.length-1) /2);
+  let pvalue = array[p];
+  let bigger = [];
+  let smaller = [];
 
 
-  p = round((array.length-1) /2);
-  pvalue = array[p];
-  //pvalue = listLimit / 2;
-
-
-    for (i = 0; i < array.length; i++){
-    current = array[i];
+    for (let i = 0; i < array.length; i++){
+    let current = array[i];
       if (current <= pvalue){
         smaller.push(current);
       } else {
         bigger.push(current);
       }
     }
-  //if (array.length > 1){
-  //  smaller = csort(smaller);
-  //  bigger = csort(bigger);
-  //}
 
-  array = smaller.concat(bigger);
-  return array;
+  iteration++;
+  if (iteration < 500){
+     smaller = csort(smaller);
+     bigger = csort(bigger);
+  }
+
+  let newArray = smaller.concat(bigger);
+  return newArray;
 }
