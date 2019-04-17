@@ -1,4 +1,4 @@
-//REMEMBER use *let* and *var* to declare variables
+//REMEMBER use *let* and *var* to declare variables! THIS IS NOT JAVA
 //Global vars:
 var listLength = 500;
 var listLimit = 1000;
@@ -22,7 +22,7 @@ function setup(){
   xunit = windowWidth / listLength;
   yunit = windowHeight / listLimit;
 
-  numbers = csort(numbers);
+  numbers = customSort(numbers);
 }
 
 //Function continually run
@@ -37,7 +37,7 @@ function draw(){
   //Create the bars array at the length of [ listLength ] and with the heights of from the [ numbers[] ] array
   for(let i = 0; i < listLength; i++){
     let height = numbers[i];
-    bars[i] = rect((0 + xunit * i), listLimit*yunit, xunit, yunit*-height);
+    bars[i] = rect((xunit * i), listLimit*yunit, xunit, yunit*-height);
   }
    //throw new Error("Script finished! - I threw an error to stop this from eating up your CPU.")
 }
@@ -51,7 +51,7 @@ function windowResized() {
 }
 
 
-function csort(array){
+function customSort(array){
   let p = round((array.length-1) /2);
   let pvalue = array[p];
   let bigger = [];
@@ -68,9 +68,9 @@ function csort(array){
     }
 
   iteration++;
-  if (iteration < 500){
-     smaller = csort(smaller);
-     bigger = csort(bigger);
+  if (iteration < 100){
+     smaller = customSort(smaller);
+     bigger = customSort(bigger);
   }
 
   let newArray = smaller.concat(bigger);
