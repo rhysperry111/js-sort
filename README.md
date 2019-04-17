@@ -1,1 +1,2 @@
-WIP: javascript sort with visualizer
+###**Javascript Sort**
+_WIP_: javascript sort and visualization with the help of [p5.js](p5js.org)
